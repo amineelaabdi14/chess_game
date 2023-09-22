@@ -21,14 +21,9 @@ public class BoardController {
                 square.setWidth(squareSize);
                 square.setHeight(squareSize);
                 if((row + col) % 2 == 0) {
-                    square.setFill(Color.web("#958d95"));
-                    for (hamid: hamidin
-                         ) {
-                        if (hamid.position[0])
-                    }
-
-                } else {
                     square.setFill(Color.web("#eeeeee"));
+                } else {
+                    square.setFill(Color.web("#958d95"));
                 }
                 chessboard.add(square, col, row);
             }
