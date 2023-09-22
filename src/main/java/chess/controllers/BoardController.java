@@ -1,4 +1,4 @@
-package app;
+package chess.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -3,6 +3,9 @@ module com.example.chess_game {
     requires javafx.fxml;
 
 
-    opens app to javafx.fxml;
-    exports app;
+
+    exports chess.controllers;
+    opens chess.controllers to javafx.fxml;
+    exports chess;
+    opens chess to javafx.fxml;
 }
