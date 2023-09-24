@@ -13,7 +13,7 @@ public class BoardController {
     public static GridPane initialize() {
         GridPane chessboard = new GridPane();
         int boardSize = 8;
-        int squareSize = 60;
+        int squareSize = 90;
 
         for(int row = 0; row < boardSize; row++) {
             for(int col = 0; col < boardSize; col++) {
