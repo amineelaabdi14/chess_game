@@ -5,7 +5,7 @@ public class Rook extends ChessPiece{
         this.col=col;
         this.row=row;
         this.color=color;
-        this.image="/resources/images";
+        this.image="/resources/images/black_rook.png";
     }
 
 
