@@ -1,6 +1,7 @@
 package chess;
 
 import chess.controllers.BoardController;
+import chess.controllers.PieceController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ public class App extends Application {
 //        stage.setTitle("akhir makayn f chess");
         stage.setScene(scene);
         stage.show();
+//        System.out.println(PieceController.initilizeBlackPieces());
     }
 
     public static void main(String[] args) {
