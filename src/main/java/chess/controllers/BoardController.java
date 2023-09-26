@@ -1,13 +1,17 @@
 package chess.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class BoardController {
 
@@ -16,22 +20,37 @@ public class BoardController {
         GridPane chessboard = new GridPane();
         int boardSize = 8;
         int squareSize = 70;
-
+        File file = new File("src/main/resources/images/black_rook.png");
+        Image image = new Image(file.toURI().toString());
+        ImageView myImage = new ImageView(image);
         for(int row = 0; row < boardSize; row++) {
             for(int col = 0; col < boardSize; col++) {
-                Rectangle square = new Rectangle();
-                square.setWidth(squareSize);
-                square.setHeight(squareSize);
-                Image myImage= new Image(getClass().getResourceAsStream("/images/black_rook.png"));
-                square.setFill(new ImagePattern(myImage));
+                StackPane stackPane = new StackPane();
+//                Rectangle square= new Rectangle();
+                Pane pane  = new Pane();
+
+                pane.setMinSize(squareSize, squareSize);
+                pane.setMaxSize(squareSize, squareSize);
+//                square.setWidth(squareSize);
+//                square.setHeight(squareSize);
+//                Image myImage= new Image(getClass().getResourceAsStream("/images/black_rook.png"));
+//                square.setFill(new ImagePattern(myImage));
                 if((row + col) % 2 == 0) {
-                    square.setFill(Color.web("#eeeeee"));
+                    pane.setStyle("-fx-background-color: #eeeeee;");
+//                    pane.setBackground(new Background(Color.web("#eeeeee"), new CornerRadii(0), new Insets(0)));
                 } else {
-                    square.setFill(Color.web("#958d95"));
+                    pane.setStyle("-fx-background-color: #958d95;");
+//                    square.setFill(Color.web("#958d95"));
                 }
-                chessboard.add(square, col, row);
+//                Image newImage = new Image("/src/main/resources/images/black_rook.png");
+
+//                stackPane.getChildren().add(myImage);
+//                stackPane.getChildren().add(square);
+                chessboard.add(pane, col, row);
+
             }
         }
+        chessboard.add(myImage, 1, 1);
         return chessboard;
     }
 }
