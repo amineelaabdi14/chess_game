@@ -1,7 +1,6 @@
 package chess;
 
-import chess.controllers.BoardController;
-import chess.controllers.PieceController;
+import chess.controllers.GameController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,9 +11,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        BoardController Board = new BoardController();
+        GameController Board = new GameController();
 //        FXMLLoader root = new FXMLLoader(App.class.getResource("board-view.fxml"));
-        Scene scene = new Scene(Board.initialize());
+        Scene scene = new Scene(Board.startGame());
 //        scene.getStylesheets().add(getClass() .getResource("board.css").toExternalForm());
 //        stage.setTitle("akhir makayn f chess");
         stage.setScene(scene);
