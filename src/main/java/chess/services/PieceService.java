@@ -4,6 +4,7 @@ import chess.enums.ChessPieceColor;
 import chess.pieces.ChessPiece;
 import chess.pieces.King;
 import chess.pieces.Knight;
+import chess.pieces.Pawn;
 import chess.repositories.ChessPieceRepo;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
@@ -87,4 +88,5 @@ public class PieceService {
         this.pieces=myPieces;
         return myPieces;
     }
+
 }

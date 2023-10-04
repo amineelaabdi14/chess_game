@@ -1,13 +1,7 @@
 package chess.repositories;
 
-import chess.ChessPiece;
 import chess.enums.ChessPieceColor;
 import chess.pieces.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ChessPieceRepo {
     public static King getInstanceOfKing(ChessPieceColor color){

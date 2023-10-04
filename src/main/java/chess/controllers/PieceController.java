@@ -2,6 +2,7 @@ package chess.controllers;
 
 import chess.pieces.ChessPiece;
 import chess.pieces.Pawn;
+import chess.services.PieceService;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -39,7 +40,7 @@ public class PieceController {
                 circle.setRadius(10);
                 circle.setStyle("-fx-fill: green");
                 pane.getChildren().add(circle);
-                this.handleMovePiece(element,pane);
+                this.handleMovePiece(element, pane);
                 chessPiecesGrid.add(pane, nextMove[0], nextMove[1]);
             }
         });
@@ -54,17 +55,16 @@ public class PieceController {
             for (int[] nextMove : this.selectedPiece.getMoveDirections()) {
                 int targetCol = nextMove[0];
                 int targetRow = nextMove[1];
-                // primitive type lover
+                // primitive type lover oui
                 if (colIndex == targetCol && rowIndex == targetRow) {
                     Pane pane = (Pane) child;
-                    // Remove the circle from the Pane
                     pane.getChildren().removeIf(node -> node instanceof Circle);
                 }
             }
         }
     }
 
-    public void handleMovePiece(Pane element,Pane pane) {
+    public void handleMovePiece(Pane element, Pane pane) {
         pane.setOnMouseClicked(event -> {
             int clickedCol;
             int clickedRow;
@@ -74,7 +74,7 @@ public class PieceController {
             ObservableList<Node> children = this.chessPiecesGrid.getChildren();
             Pane nodetoPane = null;
             ImageView myImage = null;
-            myImage =(ImageView) element.getChildren().remove(0);
+            myImage = (ImageView) element.getChildren().remove(0);
             for (Node child : children) {
                 if (chessPiecesGrid.getColumnIndex((Node) child) == clickedCol &&
                         chessPiecesGrid.getRowIndex((Node) child) == clickedRow) {
@@ -91,5 +91,4 @@ public class PieceController {
 
         });
     }
-
 }
