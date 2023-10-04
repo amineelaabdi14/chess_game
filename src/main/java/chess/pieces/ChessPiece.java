@@ -11,6 +11,16 @@ public abstract class ChessPiece {
     public int row;
     public int col;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int id;
+
     public String getImage() {
         return image;
     }
@@ -44,4 +54,6 @@ public abstract class ChessPiece {
     }
 
     public abstract void movePiece();
+
+    public abstract int[][] getMoveDirections();
 }

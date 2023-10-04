@@ -9,8 +9,11 @@ public class Rook extends ChessPiece{
         this.color=color;
         this.image="src/main/resources/images/"+color+"_rook.png";
     }
-
-
+    @Override
+    public int[][] getMoveDirections() {
+        int [][] directions =  {{0,1}};
+        return directions;
+    }
     @Override
     public void movePiece() {
 

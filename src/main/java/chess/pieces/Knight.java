@@ -10,6 +10,11 @@ public class Knight extends ChessPiece{
         this.image="src/main/resources/images/"+color+"_knight.png";
     }
     @Override
+    public int[][] getMoveDirections() {
+        int [][] directions =  {{0,1}};
+        return directions;
+    }
+    @Override
     public void movePiece() {
 
     }

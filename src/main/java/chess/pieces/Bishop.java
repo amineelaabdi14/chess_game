@@ -10,6 +10,11 @@ public class Bishop extends ChessPiece {
         this.image="src/main/resources/images/"+color+"_bishop.png";
     }
     @Override
+    public int[][] getMoveDirections() {
+        int [][] directions =  {{0,1}};
+        return directions;
+    }
+    @Override
     public void movePiece() {
 
     }
