@@ -7,9 +7,15 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class PieceController {
     private ChessPiece selectedPiece = null;
@@ -23,9 +29,10 @@ public class PieceController {
         this.chessPiecesGrid = chessBoardGrid;
     }
 
-    public void handlePieceClick(Pane element, GridPane chessPiecesGrid, ChessPiece myPiece) {
+    public void handlePieceClick(Pane element, GridPane chessPiecesGrid, ChessPiece myPiece, List<ChessPiece> pieces) {
         if (myPiece == null) return;
         this.chessPiecesGrid = chessPiecesGrid;
+
         element.setOnMouseClicked(event -> {
             if (this.selectedPiece instanceof ChessPiece) this.resetMovementGuide();
             this.selectedPiece = myPiece;
@@ -33,15 +40,29 @@ public class PieceController {
             int clickedElementRowIndex = myPiece.row;
             int[][] nextMoves = myPiece.getMoveDirections();
             for (int[] nextMove : nextMoves) {
-                Pane pane = new Pane();
-                Circle circle = new Circle();
-                circle.setCenterX(35);
-                circle.setCenterY(35);
-                circle.setRadius(10);
-                circle.setStyle("-fx-fill: green");
-                pane.getChildren().add(circle);
-                this.handleMovePiece(element, pane);
-                chessPiecesGrid.add(pane, nextMove[0], nextMove[1]);
+                System.out.println("test");
+                if (nextMove[0] > 7 || nextMove[1] > 7 || nextMove[0] < 0 || nextMove[1] < 0) continue;
+                boolean isOccupied = false;
+                for (ChessPiece piece : pieces) {
+                    if (piece.col == nextMove[0] && piece.row == nextMove[1]) {
+                        isOccupied = true;
+                        break;
+                    }
+                }
+                if (isOccupied) {
+                    System.out.println("test");
+                    continue;
+                } else {
+                    Pane pane = new Pane();
+                    Circle circle = new Circle();
+                    circle.setCenterX(35);
+                    circle.setCenterY(35);
+                    circle.setRadius(10);
+                    circle.setStyle("-fx-fill: green");
+                    pane.getChildren().add(circle);
+                    this.handleMovePiece(element, pane, pieces);
+                    chessPiecesGrid.add(pane, nextMove[0], nextMove[1]);
+                }
             }
         });
     }
@@ -64,10 +85,9 @@ public class PieceController {
         }
     }
 
-    public void handleMovePiece(Pane element, Pane pane) {
+    public void handleMovePiece(Pane element, Pane pane, List<ChessPiece> pieces) {
         pane.setOnMouseClicked(event -> {
-            int clickedCol;
-            int clickedRow;
+            int clickedCol, clickedRow;
             clickedCol = chessPiecesGrid.getColumnIndex((Node) pane);
             clickedRow = chessPiecesGrid.getRowIndex((Node) pane);
             this.resetMovementGuide();
@@ -75,6 +95,8 @@ public class PieceController {
             Pane nodetoPane = null;
             ImageView myImage = null;
             myImage = (ImageView) element.getChildren().remove(0);
+            chessPiecesGrid.add(new Pane(), selectedPiece.col, selectedPiece.row);
+            chessPiecesGrid.getChildren().remove(element);
             for (Node child : children) {
                 if (chessPiecesGrid.getColumnIndex((Node) child) == clickedCol &&
                         chessPiecesGrid.getRowIndex((Node) child) == clickedRow) {
@@ -82,7 +104,7 @@ public class PieceController {
                     direction.getChildren().add(myImage);
                     selectedPiece.setCol(clickedCol);
                     selectedPiece.setRow(clickedRow);
-                    this.handlePieceClick(direction, chessPiecesGrid, selectedPiece);
+                    this.handlePieceClick(direction, chessPiecesGrid, selectedPiece, pieces);
                 }
             }
             if (selectedPiece instanceof Pawn) {

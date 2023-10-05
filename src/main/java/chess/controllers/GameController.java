@@ -37,7 +37,7 @@ public class GameController {
                         myImage.setFitWidth(squareSize);
                         pane.getChildren().add(myImage);
                         chessPiecesGrid.add(pane, myPiece.col, myPiece.row);
-                        pieceController.handlePieceClick(pane, chessPiecesGrid,myPiece);
+                        pieceController.handlePieceClick(pane, chessPiecesGrid,myPiece ,myPieces);
                         notFound=false;
                     }
                 }
@@ -46,7 +46,7 @@ public class GameController {
                     pane.setMinSize(squareSize, squareSize);
                     pane.setMaxSize(squareSize, squareSize);
                     chessPiecesGrid.add(pane, col, row);
-                    pieceController.handlePieceClick(pane, chessPiecesGrid,null);
+                    pieceController.handlePieceClick(pane, chessPiecesGrid,null,myPieces);
 
                 }
             }

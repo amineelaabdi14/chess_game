@@ -11,7 +11,16 @@ public class Knight extends ChessPiece{
     }
     @Override
     public int[][] getMoveDirections() {
-        int [][] directions =  {{0,1}};
+        int [][] directions =  {
+                {col+1,row+2},
+                {col+1,row-2},
+                {col-1,row+2},
+                {col-1,row-2},
+                {col+2,row+1},
+                {col+2,row-1},
+                {col-2,row+1},
+                {col-2,row-1}
+        };
         return directions;
     }
     @Override
