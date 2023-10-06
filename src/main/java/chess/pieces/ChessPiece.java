@@ -3,6 +3,7 @@ package chess.pieces;
 import chess.enums.ChessPieceColor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class ChessPiece {
@@ -53,7 +54,5 @@ public abstract class ChessPiece {
         this.col = col;
     }
 
-    public abstract void movePiece();
-
-    public abstract int[][] getMoveDirections();
+    public abstract  Map<String, List<int[]>> getMoveDirections();
 }

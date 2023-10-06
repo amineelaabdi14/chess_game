@@ -89,4 +89,16 @@ public class PieceService {
         return myPieces;
     }
 
+    public  static boolean handleCaptureClick(Pane element, GridPane chessPiecesGrid, ChessPiece myPiece, List<ChessPiece> pieces,Pane target){
+        target.setOnMouseClicked(event -> {
+            chessPiecesGrid.getChildren().remove(target);
+            pieces.stream().forEach(piece -> {
+                if (piece.col == myPiece.col && piece.row == myPiece.row) {
+                    pieces.remove(piece);
+                }
+            });
+        });
+        return true;
+    }
+
 }
