@@ -17,10 +17,10 @@ public class Bishop extends ChessPiece {
     @Override
     public Map<String, List<int[]>> getMoveDirections() {
         int[][] deltas = {
-                {-1, -1},   // diagonal up-left
-                {-1, 1},    // diagonal up-right
-                {1, -1},    // diagonal down-left
-                {1, 1}      // diagonal down-right
+                {-1, -1},
+                {-1, 1},
+                {1, -1},
+                {1, 1}
         };
 
         String[] directionNames = {

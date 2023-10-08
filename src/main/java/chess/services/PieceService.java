@@ -89,9 +89,19 @@ public class PieceService {
         return myPieces;
     }
 
-    public  static boolean handleCaptureClick(Pane element, GridPane chessPiecesGrid, ChessPiece myPiece, List<ChessPiece> pieces,Pane target){
+    public  static boolean handleCaptureClick(GridPane chessPiecesGrid, ChessPiece myPiece, List<ChessPiece> pieces,Pane target){
         target.setOnMouseClicked(event -> {
-            chessPiecesGrid.getChildren().remove(target);
+            ObservableList<Node> children = chessPiecesGrid.getChildren();
+//            chessPiecesGrid.getChildren().remove(target);
+            for (Node child : children) {
+                if (chessPiecesGrid.getColumnIndex(child) == myPiece.col && chessPiecesGrid.getRowIndex(child)  == myPiece.row) {
+                    System.out.println("child is");
+                    Pane childtoPan = (Pane) child;
+                    System.out.println(childtoPan.getChildren().toArray().toString());
+                    childtoPan.getChildren().removeIf(node -> node instanceof ImageView);
+//                    chessPiecesGrid.getChildren().remove(child);
+                }
+            }
             pieces.stream().forEach(piece -> {
                 if (piece.col == myPiece.col && piece.row == myPiece.row) {
                     pieces.remove(piece);
